@@ -23,21 +23,15 @@ class MainLibActivity : AppCompatActivity() {
 
 
         MyConfig.callIfDebug {
-            Toast.makeText(this, "its debug", Toast.LENGTH_SHORT).show()
+            Log.d("TagDebug123","its a debug")
         }
 
-        MyConfig.callIfBeta {
-            Toast.makeText(this, "its beta", Toast.LENGTH_SHORT).show()
-        }
-
-        MyConfig.callIfRelease {
-            Toast.makeText(this, "its release", Toast.LENGTH_SHORT).show()
-        }
 
 
         val btnProducts: Button = findViewById(R.id.btnProducts)
         val btnCheckingTypes: Button = findViewById(R.id.btnCheckingTypes)
         val btnRVScreenTest: Button = findViewById(R.id.btnCheckRVScreen)
+        val btnCheckDebugOrRelease: Button = findViewById(R.id.checkDebugOrRelease)
         val tvTesting: TextView = findViewById(R.id.idConfigTesting)
 
         val config = MyConfig()
@@ -50,6 +44,12 @@ class MainLibActivity : AppCompatActivity() {
 
         btnRVScreenTest.setOnClickListener {
             val intent = Intent(this@MainLibActivity, TestingRVScreen::class.java)
+            startActivity(intent)
+        }
+
+
+        btnCheckDebugOrRelease.setOnClickListener {
+            val intent = Intent(this@MainLibActivity, BuildVariantScreen::class.java)
             startActivity(intent)
         }
 

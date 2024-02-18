@@ -61,7 +61,17 @@
         android:textAllCaps="false"/>
 
 
-
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:id="@+id/checkDebugOrRelease"
+        android:background="@color/white"
+        android:text="Click to Check Debug or Release"
+        android:textStyle="bold"
+        android:layout_margin="12dp"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"/>
 
 
 

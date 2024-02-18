@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="Test List"
+        android:id="@+id/tb1"
         app:titleTextColor="@color/white"
         android:minHeight="70dp"/>
 
