@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "splashScrrenRequestExample"
+rootProject.name = "libraryExample"
 include ':app'

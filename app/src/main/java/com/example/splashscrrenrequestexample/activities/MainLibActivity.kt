@@ -5,10 +5,12 @@ import android.content.Intent
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import com.example.splashscrrenrequestexample.ApiUtil.Products
 import com.example.splashscrrenrequestexample.MyConfig
 import com.example.splashscrrenrequestexample.R
@@ -19,15 +21,29 @@ class MainLibActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main_lib)
         setStatusBarDrawable()
 
+
+        MyConfig.callIfDebug {
+            Toast.makeText(this, "its debug", Toast.LENGTH_SHORT).show()
+        }
+
+        MyConfig.callIfBeta {
+            Toast.makeText(this, "its beta", Toast.LENGTH_SHORT).show()
+        }
+
+        MyConfig.callIfRelease {
+            Toast.makeText(this, "its release", Toast.LENGTH_SHORT).show()
+        }
+
+
         val btnProducts: Button = findViewById(R.id.btnProducts)
         val btnCheckingTypes: Button = findViewById(R.id.btnCheckingTypes)
         val btnRVScreenTest: Button = findViewById(R.id.btnCheckRVScreen)
         val tvTesting: TextView = findViewById(R.id.idConfigTesting)
 
         val config = MyConfig()
-        tvTesting.text = config.internalVariable
+        tvTesting.text = config.internalVariable()
 
-        btnCheckingTypes.setOnClickListener{
+        btnCheckingTypes.setOnClickListener {
             val intent = Intent(this@MainLibActivity, DataTypesTestingScreen::class.java)
             startActivity(intent)
         }
@@ -39,7 +55,7 @@ class MainLibActivity : AppCompatActivity() {
 
 
 
-        btnProducts.setOnClickListener{
+        btnProducts.setOnClickListener {
             val intent = Intent(this@MainLibActivity, ProductScreen::class.java)
             intent.putParcelableArrayListExtra("productsList", productList())
             startActivity(intent)
@@ -47,7 +63,7 @@ class MainLibActivity : AppCompatActivity() {
 
     }
 
-    private fun productList(): ArrayList<Products>?{
+    private fun productList(): ArrayList<Products>? {
         return intent.getParcelableArrayListExtra<Products>("productsList")
     }
 

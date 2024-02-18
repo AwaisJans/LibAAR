@@ -11,6 +11,9 @@ object ApiService {
 
     private const val BASE_URL = "https://fakestoreapi.com"
 
+
+
+
     fun getProducts(callback: (List<Products>?) -> Unit) {
         val url = "$BASE_URL/products/"
 

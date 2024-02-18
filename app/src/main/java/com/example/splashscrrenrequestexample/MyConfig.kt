@@ -1,8 +1,39 @@
 package com.example.splashscrrenrequestexample
 
 class MyConfig {
+
+    companion object{
+        private const val RELEASE = "release"
+        private const val BETA = "beta"
+        private const val DEBUG = "debug"
+        fun callIfDebug(myCallingVoid:()->Unit){
+            if(BuildConfig.BUILD_TYPE == DEBUG){
+                myCallingVoid()
+            }
+        }
+
+        fun callIfRelease(myCallingVoid:()->Unit){
+            if(BuildConfig.BUILD_TYPE == RELEASE){
+                myCallingVoid()
+            }
+        }
+
+        fun callIfBeta(myCallingVoid:()->Unit){
+            if(BuildConfig.BUILD_TYPE == BETA){
+                myCallingVoid()
+            }
+        }
+    }
+
+
+    fun internalVariable(): String {
+        return "Library"
+    }
+
+
+
+
     // String
-    var internalVariable = "Library"
     var name = "MasterMind"
 
     // Int
