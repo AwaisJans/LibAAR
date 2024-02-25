@@ -20,10 +20,6 @@ android {
 
 
 
-    buildFeatures {
-        buildConfig true
-    }
-
     buildTypes{
         release{
            debuggable false
@@ -49,6 +45,7 @@ android {
 }
 
 dependencies {
+
 
     implementation 'com.google.code.gson:gson:2.8.8'
 

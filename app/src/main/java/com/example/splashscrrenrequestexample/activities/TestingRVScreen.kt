@@ -46,20 +46,8 @@ class TestingRVScreen : AppCompatActivity() {
         val tb = findViewById<Toolbar>(R.id.tb1)
 
 
-
-
-        MyConfig.callIfDebug {
-            jsonString = readJsonFile(R.raw.test_file)
-            tb.title = "Test List"
-        }
-
-        MyConfig.callIfBeta {
-        }
-
-        MyConfig.callIfRelease {
             jsonString = readJsonFile(R.raw.original_file)
             tb.title = "Original List"
-        }
 
 
         val dashboardResponse = Gson().fromJson(jsonString, DashboardResponse::class.java)

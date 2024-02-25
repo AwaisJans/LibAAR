@@ -6,19 +6,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.splashscrrenrequestexample.MyConfig
 import com.example.splashscrrenrequestexample.R
 
-class BuildVariantScreen: AppCompatActivity() {
+class BuildVariantScreen : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        MyConfig.callIfDebug {
-            setContentView(R.layout.debug_layout)
-        }
-
-        MyConfig.callIfRelease {
-            setContentView(R.layout.release_layout)
-        }
+        setContentView(R.layout.release_layout)
 
 
     }

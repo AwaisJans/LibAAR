@@ -10,22 +10,16 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import com.example.splashscrrenrequestexample.ApiUtil.Products
 import com.example.splashscrrenrequestexample.MyConfig
 import com.example.splashscrrenrequestexample.R
+import com.example.splashscrrenrequestexample.timber.src.main.java.timber.log.Timber
 
 class MainLibActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_lib)
         setStatusBarDrawable()
-
-
-        MyConfig.callIfDebug {
-            Log.d("TagDebug123","its a debug")
-        }
-
 
 
         val btnProducts: Button = findViewById(R.id.btnProducts)
@@ -38,16 +32,15 @@ class MainLibActivity : AppCompatActivity() {
         tvTesting.text = config.internalVariable()
 
         btnCheckingTypes.setOnClickListener {
+            Timber.tag("debug123")
+            Timber.d("i have got my destination")
             val intent = Intent(this@MainLibActivity, DataTypesTestingScreen::class.java)
             startActivity(intent)
         }
-
         btnRVScreenTest.setOnClickListener {
             val intent = Intent(this@MainLibActivity, TestingRVScreen::class.java)
             startActivity(intent)
         }
-
-
         btnCheckDebugOrRelease.setOnClickListener {
             val intent = Intent(this@MainLibActivity, BuildVariantScreen::class.java)
             startActivity(intent)
