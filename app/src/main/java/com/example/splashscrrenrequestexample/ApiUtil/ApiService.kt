@@ -1,9 +1,9 @@
 package com.example.splashscrrenrequestexample.ApiUtil
 
+import android.content.Context
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
-import com.example.splashscrrenrequestexample.MyApplication
 import org.json.JSONArray
 import java.util.Locale
 
@@ -11,10 +11,7 @@ object ApiService {
 
     private const val BASE_URL = "https://fakestoreapi.com"
 
-
-
-
-    fun getProducts(callback: (List<Products>?) -> Unit) {
+    fun getProducts(context: Context,callback: (List<Products>?) -> Unit) {
         val url = "$BASE_URL/products/"
 
         val jsonArrayRequest = JsonArrayRequest(
@@ -28,7 +25,7 @@ object ApiService {
             }
         )
 
-        Volley.newRequestQueue(MyApplication.context).add(jsonArrayRequest)
+        Volley.newRequestQueue(context).add(jsonArrayRequest)
     }
 
     private fun parseJsonArray(jsonArray: JSONArray): List<Products> {
