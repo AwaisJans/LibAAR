@@ -14,8 +14,9 @@ import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.splashscrrenrequestexample.MyConfig
+import com.example.splashscrrenrequestexample.utils.MyConfig
 import com.example.splashscrrenrequestexample.R
+import com.example.splashscrrenrequestexample.adapter.TestingRVAdapter
 import com.example.splashscrrenrequestexample.model.DashboardItem
 import com.example.splashscrrenrequestexample.model.DashboardResponse
 import com.google.gson.Gson
@@ -28,43 +29,26 @@ class TestingRVScreen : AppCompatActivity() {
     private lateinit var postAdapter: TestingRVAdapter
     private lateinit var recyclerView: RecyclerView
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_testing_rvscreen)
         setStatusBarDrawable()
 
         recyclerView = findViewById(R.id.recyclerView)
-
         val config = MyConfig()
-
-
         var jsonString = ""
-
-
         val tb = findViewById<Toolbar>(R.id.tb1)
-
-
             jsonString = readJsonFile(R.raw.original_file)
             tb.title = "Original List"
-
-
         val dashboardResponse = Gson().fromJson(jsonString, DashboardResponse::class.java)
         val dashboardItems: List<DashboardItem> = dashboardResponse.dashboard
-
-
-
         postAdapter = TestingRVAdapter(dashboardItems)
         recyclerView.layoutManager = StaggeredGridLayoutManager(2, RecyclerView.VERTICAL)
         recyclerView.adapter = postAdapter
-
-
-
     }
 
 
-    fun Context.readJsonFile(resourceId: Int): String {
+    private fun Context.readJsonFile(resourceId: Int): String {
         val inputStream: InputStream = resources.openRawResource(resourceId)
         val reader = BufferedReader(InputStreamReader(inputStream))
         return buildString {
@@ -98,29 +82,7 @@ class TestingRVScreen : AppCompatActivity() {
     }
 
 
-    class TestingRVAdapter(private val products: List<DashboardItem>) :
-        RecyclerView.Adapter<TestingRVAdapter.PostViewHolder>() {
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostViewHolder {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.item_test, parent, false)
-            return PostViewHolder(view)
-        }
-
-        @SuppressLint("SetTextI18n")
-        override fun onBindViewHolder(holder: PostViewHolder, position: Int) {
-            val post = products[position]
-            holder.titleTextView.text = post.title
-
-        }
-
-        override fun getItemCount(): Int = products!!.size
-
-        class PostViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            var titleTextView: TextView = itemView.findViewById(R.id.titleTextView)
-
-
-        }
-    }
 
 
 

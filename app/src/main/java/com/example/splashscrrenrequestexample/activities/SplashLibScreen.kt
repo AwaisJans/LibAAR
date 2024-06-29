@@ -32,22 +32,23 @@ class SplashLibScreen : AppCompatActivity() {
 
     private fun fetchData() {
 
-        ApiService.getProducts { posts ->
 
-            if (posts != null) {
-                val convertedList: ArrayList<out Parcelable> = ArrayList(posts)
+        ApiService.getProducts(this) { posts ->
 
-                Handler().postDelayed({
-                    val intent = Intent(this@SplashLibScreen, MainLibActivity::class.java)
-                    intent.putParcelableArrayListExtra("productsList", convertedList)
-                    startActivity(intent)
-                    finish()
-                }, 1000)
-        } else {
-            Toast.makeText(this@SplashLibScreen, "Can not get Data", Toast.LENGTH_SHORT).show()
+                if (posts != null) {
+                    val convertedList: ArrayList<out Parcelable> = ArrayList(posts)
+
+                    Handler().postDelayed({
+                        val intent = Intent(this@SplashLibScreen, MainLibActivity::class.java)
+                        intent.putParcelableArrayListExtra("productsList", convertedList)
+                        startActivity(intent)
+                        finish()
+                    }, 1000)
+                } else {
+                    Toast.makeText(this@SplashLibScreen, "Can not get Data", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
-    }
-}
 
 @SuppressLint("UseCompatLoadingForDrawables")
 private fun setStatusBarDrawable() {

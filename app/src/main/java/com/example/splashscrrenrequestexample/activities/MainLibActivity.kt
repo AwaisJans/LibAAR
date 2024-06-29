@@ -5,15 +5,14 @@ import android.content.Intent
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
 import android.widget.TextView
 import com.example.splashscrrenrequestexample.ApiUtil.Products
-import com.example.splashscrrenrequestexample.MyConfig
+import com.example.splashscrrenrequestexample.utils.MyConfig
 import com.example.splashscrrenrequestexample.R
-import com.example.splashscrrenrequestexample.timber.src.main.java.timber.log.Timber
+import com.example.splashscrrenrequestexample.utils.Logger
 
 class MainLibActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,8 +31,8 @@ class MainLibActivity : AppCompatActivity() {
         tvTesting.text = config.internalVariable()
 
         btnCheckingTypes.setOnClickListener {
-            Timber.tag("debug123")
-            Timber.d("i have got my destination")
+            // it will show log value only if flavor is debug
+            Logger.logDebugMessage(this,"debug123","i have got my destination")
             val intent = Intent(this@MainLibActivity, DataTypesTestingScreen::class.java)
             startActivity(intent)
         }
@@ -46,8 +45,6 @@ class MainLibActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
-
         btnProducts.setOnClickListener {
             val intent = Intent(this@MainLibActivity, ProductScreen::class.java)
             intent.putParcelableArrayListExtra("productsList", productList())
@@ -57,7 +54,7 @@ class MainLibActivity : AppCompatActivity() {
     }
 
     private fun productList(): ArrayList<Products>? {
-        return intent.getParcelableArrayListExtra<Products>("productsList")
+        return intent.getParcelableArrayListExtra("productsList")
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")

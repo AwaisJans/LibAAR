@@ -1,7 +1,6 @@
 package com.example.splashscrrenrequestexample.activities
 
 import android.annotation.SuppressLint
-import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import androidx.appcompat.app.AppCompatActivity
@@ -10,8 +9,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.widget.ImageViewCompat
-import com.example.splashscrrenrequestexample.MyConfig
+import com.example.splashscrrenrequestexample.utils.MyConfig
 import com.example.splashscrrenrequestexample.R
 
 class DataTypesTestingScreen : AppCompatActivity() {
